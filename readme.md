@@ -70,12 +70,25 @@ Terakhir, untuk menemukan kredensial yang dipakai, kita menggunakan display filt
 
 ## Path to Flag
 
+Untuk menghitung jumlah attempt yang dilakukan oleh hacker, saya perlu lihat isi dari file `ftp.pcap` dan mencari informasi. Untuk mempermudah membacanya saya menggunakan filter `ftp`. Untuk membuat filternya semakin spesifik, dan setiap attempt yang dilakukan pasti akan dimintai password, saya menggunakan display filter `ftp.request.command == "PASS"` agar informasi yang ditampilkan hanya informasi yang berisikan attempt password oleh hacker.
+
+<img src="attachments/ftp.png"><br>
+
+Selanjutnya pada bagian pojok kanan bawah dapat kita lihat total displayed-nya, yaitu `934`.
+
+<img src="attachments/attempt.png"><br>
+
+<img src="attachments/attempt.png"><br>
+
+`Flag: JARKOM2024{c0unT_uR_P4cket5_cTw8RbAjgAJsR8B}`
+
 # trace him 
 
 > <p>Selain menghitung jumlah packet, coba lacak juga ip penyerang tersebut!</p>
 > <p><a href="attachments/ftp.pcap">ftp.pcap</a></p>
 
 ## Path to Flag
+Pada soal sebelumnya saya sudah menggunakan 
 
 # creds 
 
