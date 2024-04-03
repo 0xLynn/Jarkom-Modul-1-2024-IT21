@@ -78,7 +78,7 @@ Selanjutnya pada bagian pojok kanan bawah dapat kita lihat total displayed-nya, 
 
 <img src="attachments/attempt.png"><br>
 
-<img src="attachments/attempt.png"><br>
+<img src="attachments/flag5.png"><br>
 
 `Flag: JARKOM2024{c0unT_uR_P4cket5_cTw8RbAjgAJsR8B}`
 
@@ -88,7 +88,15 @@ Selanjutnya pada bagian pojok kanan bawah dapat kita lihat total displayed-nya, 
 > <p><a href="attachments/ftp.pcap">ftp.pcap</a></p>
 
 ## Path to Flag
-Pada soal sebelumnya saya sudah menggunakan 
+Pada soal sebelumnya saya sudah menggunakan filter `ftp.request.command == "PASS"` untuk melihat informasi mengenai attempt password yang dilakukan oleh penyerang. Dengan filter tersebut juga saya dapat melihat IP `source` dari penyerang.
+
+<img src="attachments/ftp.png"><br>
+
+Pada bagian `source` terlihat semua attempt serangan berasal dari IP `10.30.3.4`
+
+<img src="attachments/flag6.png"><br>
+
+`Flag: JARKOM2024{Wh3re'5_thE_S4uce_9h8CPzAfizFol89}`
 
 # creds 
 
