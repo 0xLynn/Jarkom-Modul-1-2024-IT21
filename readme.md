@@ -146,3 +146,76 @@ Kita langsung follow stream dan mendapatkan username dan password yang berhasil 
 <img src="attachments/7-5.png"><br>
 
 `Flag: JARKOM2024{s3m4ng4t_ya_<3_chfCXcAjg6ksR8B}`
+
+# Revisi
+
+## whoami
+
+> <p>Dapatkah kamu menemukan siapa identitas attacker?</p>
+> <p><a href="attachments/evidence.pcap">evidence.pcap</a></p>
+
+### Path to Flag
+
+Kita menggunakan display filter ftp dan mencoba untuk follow tcp stream dari response yang berhasil login
+
+<img src="attachments/8-1.png"><br>
+
+Lalu, kita mencoba untuk mengecek value maksimal dari tcp.stream, yang dimana ternyata hanya sampai `tcp.stream eq 14` dan kita tidak mendapatkan clue apapun, jadi kita mencoba untuk secara manual mengecek payload tiap packet yang memiliki protocol berhubungan dengan FTP (FTP / FTP-DATA). Kita mendapatkan sebuah base64 encoded string.
+
+```
+echo "SGVsbG8gbXkgbmFtZSBpcyBQYXVsIEF0cmVpZGVzCg==" | base64 -d
+Hello my name is Paul Atreides
+```
+
+<img src="attachments/8-2.png"><br>
+
+`Flag: JARKOM2024{Duk3_0f_4rak!s_LISAN AL GHAIB!_ITr8PcnyizJtR8t}`<br>
+
+## secret
+> <p>Temukan pesan rahasia dari attacker</p>
+> <p><a href="attachments/evidence.pcap">evidence.pcap</a></p>
+
+### Path to Flag
+Awalnya no clue, tapi selain ada C file malware, terdapat juga gambar dengan file name `mirza.jpg`
+<img src="attachments/9-1.jpg"><br>
+
+Jadi kita mencoba untuk memasukkan kata kunci `MIO MIRZA`
+
+<img src="attachments/9-2.png"><br>
+
+`Flag: JARKOM2024{l0_Blm_tW_MIO_MIRZA?_ch8Rvz9jl1kel8q}`
+
+## malwaew
+> <p>Ini adalah network traffic dari salah satu komputer di DPSSI yang terkena malware. Pak Sunhi, memintamu untuk membantu menganalisisnya. Bantulah Pak Sunhi untuk menemukan malware tersebut.
+
+note: Network traffic berikut mengandung malware asli. #DYOR Attachment: </p>
+> <p><a href="attachments/infected.zip">infected.zip</a></p>
+
+### Path to Flag
+No clue sebelum hint turun, tetapi telat menyadari fungsi hint `decrypt tls first`.
+Dibutuhkan SSLKEYLOGFILE yang ternyata merupakan file txt yang diberikan dengan filename `keylog.txt`.
+Kemudian, dengan memasukan keylog.txt yang telah diberikan ke dalam pre-shared key yang ada di menu `preferences`
+
+<img src="attachments/10-1.png"><br>
+
+karena terdapat kata tls di soal, jadi kita mencoba untuk display filter `tls` dan menemukan 2 jenis protocol, yaitu `TLSv1.2` dan `HTTP`.
+
+<img src="attachments/10-2.png"><br>
+
+sehingga kita mencoba untuk `export object HTTP` dan save file yang bernama `invest_20.dll` karena hanya file itu yang mencurigakan sebagai malware.
+
+<img src="attachments/10-3.png"><br>
+
+Kemudian, mendapatkan sha256 hash dari `invest_20.dll`
+
+<img src="attachments/10-4.png"><br>
+
+`SHA256 Hash invest_20.dll: 31cf42b2a7c5c558f44cfc67684cc344c17d4946d3a1e0b2cecb8eb58173cb2f`
+
+<img src="attachments/10-5.png"><br>
+
+`Flag: JARKOM2024{wow_how_u_solve_this_xh8CPzxHizFt88Y}`
+
+
+
+
